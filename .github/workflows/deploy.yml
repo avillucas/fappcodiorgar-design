@@ -1,0 +1,35 @@
+name: Build and Deploy to Ferozo
+
+on:
+  push:
+    branches:
+      - main # O la rama que uses para producción
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Generar el Build
+        run: npm run build
+
+      - name: Subir archivos a Ferozo por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # La carpeta de tu hosting Ferozo donde se servira la web publica
+          server-dir: /public_html/
+          # Directorio transpilado por Vite
+          local-dir: ./dist/
