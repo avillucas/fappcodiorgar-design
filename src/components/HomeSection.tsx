@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  Heart, 
   Scale, 
   Users, 
   HeartHandshake, 
@@ -11,21 +10,29 @@ import {
   ArrowRight, 
   Store, 
   FileCheck, 
-  Sparkles, 
   ShieldCheck, 
   CheckCircle2,
-  Calendar,
-  Layers
+  Coffee,
+  UserCheck
 } from 'lucide-react';
 import { SectionId } from '../types';
-import { INSTITUTIONAL_INFO, PILLARS, AREAS } from '../data/fappcodiData';
+import { PILLARS, AREAS } from '../data/fappcodiData';
+import { trackCtaClick } from '../utils/analytics';
 
 interface Props {
   onNavigate: (section: SectionId) => void;
-  onOpenDonateModal: () => void;
 }
 
-export const HomeSection: React.FC<Props> = ({ onNavigate, onOpenDonateModal }) => {
+export const HomeSection: React.FC<Props> = ({ onNavigate }) => {
+  const handleCta = (section: SectionId, ctaName: string, label: string) => {
+    trackCtaClick({
+      cta_name: ctaName,
+      cta_category: 'navigation',
+      cta_label: label,
+      cta_location: 'home_section'
+    });
+    onNavigate(section);
+  };
   return (
     <div className="space-y-12 pb-16">
       {/* Hero Banner with High Contrast, Human and Institutional Dignity */}
@@ -66,74 +73,33 @@ export const HomeSection: React.FC<Props> = ({ onNavigate, onOpenDonateModal }) 
           {/* Direct Actions */}
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <button
-              id="btn-hero-donate"
+              id="btn-hero-inclukiosco"
               type="button"
-              onClick={onOpenDonateModal}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-sm sm:text-base shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer"
+              onClick={() => handleCta('programas', 'hero_btn_inclukiosco', 'Conocé el Inclukiosco y Programas')}
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-sky-700 hover:bg-sky-600 text-white rounded-xl font-bold text-sm sm:text-base shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer"
             >
-              <Heart className="w-5 h-5 fill-white text-emerald-100" />
-              <span>Colaborá con Nosotros</span>
+              <span>Conocé el Inclukiosco y Programas</span>
+              <ArrowRight className="w-4 h-4 text-sky-200" />
             </button>
 
             <button
-              id="btn-hero-inclukiosco"
+              id="btn-hero-laboral"
               type="button"
-              onClick={() => onNavigate('programas')}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-sky-800/80 hover:bg-sky-700 text-white rounded-xl font-bold text-sm sm:text-base border border-sky-600/50 shadow transition-all cursor-pointer"
+              onClick={() => handleCta('laboral', 'hero_btn_laboral', 'Inserción Laboral')}
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-bold text-sm sm:text-base shadow transition-all cursor-pointer"
             >
-              <span>Conocé el Inclukiosco</span>
-              <ArrowRight className="w-4 h-4 text-sky-300" />
+              <Briefcase className="w-4 h-4 text-emerald-200" />
+              <span>Inserción Laboral</span>
             </button>
 
             <button
               id="btn-hero-cud"
               type="button"
-              onClick={() => onNavigate('normativas')}
+              onClick={() => handleCta('normativas', 'hero_btn_cud', 'Guía del CUD y Leyes')}
               className="inline-flex items-center gap-2 px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-semibold text-sm border border-slate-700 transition cursor-pointer"
             >
               <FileCheck className="w-4 h-4 text-emerald-400" />
-              <span>Guía y Trámite del CUD</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Campaña Solidaria del Mes: "Ayudanos a Ayudar" */}
-      <section 
-        aria-labelledby="campaign-month-title"
-        className="rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-sky-500/10 border-2 border-emerald-600/30 p-6 sm:p-8 bg-white"
-      >
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center gap-2 text-emerald-800 text-xs font-extrabold uppercase tracking-wider">
-              <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>Campaña Solidaria Activa del Mes</span>
-            </div>
-            <h2 id="campaign-month-title" className="text-2xl sm:text-3xl font-bold text-slate-900">
-              Ayudanos a ayudar: COLABORÁ CON NOSOTROS
-            </h2>
-            <p className="text-slate-700 text-base leading-relaxed">
-              Necesitamos de tu apoyo y tu donación para poder seguir sosteniéndonos económicamente, reparando sillas de ruedas, proveyendo bastones a personas ciegas y sosteniendo los incentivos para pasantes del Inclukiosco.
-            </p>
-            <div className="flex flex-wrap gap-4 pt-2 text-xs font-mono text-slate-700">
-              <span className="bg-white px-3 py-1.5 rounded-lg border border-slate-300 shadow-sm">
-                <strong>Alias:</strong> {INSTITUTIONAL_INFO.donationAlias}
-              </span>
-              <span className="bg-white px-3 py-1.5 rounded-lg border border-slate-300 shadow-sm">
-                <strong>CBU:</strong> {INSTITUTIONAL_INFO.donationCBU}
-              </span>
-            </div>
-          </div>
-
-          <div className="w-full lg:w-auto flex-shrink-0">
-            <button
-              id="btn-campaign-donate"
-              type="button"
-              onClick={onOpenDonateModal}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-base shadow-md transition cursor-pointer"
-            >
-              <Heart className="w-5 h-5 fill-white" />
-              <span>Sumar mi Donación</span>
+              <span>Guía del CUD y Leyes</span>
             </button>
           </div>
         </div>
@@ -226,7 +192,7 @@ export const HomeSection: React.FC<Props> = ({ onNavigate, onOpenDonateModal }) 
       {/* Quick Access to Key Initiatives */}
       <section aria-labelledby="initiatives-title" className="space-y-6">
         <h2 id="initiatives-title" className="text-2xl sm:text-3xl font-bold text-slate-900">
-          Proyectos Insignia en Marcha
+          Programas y Proyectos Destacados
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -249,7 +215,7 @@ export const HomeSection: React.FC<Props> = ({ onNavigate, onOpenDonateModal }) 
             <div className="pt-4 mt-4 border-t border-slate-100">
               <button
                 type="button"
-                onClick={() => onNavigate('programas')}
+                onClick={() => handleCta('programas', 'home_card_inclukiosco', 'Conocer detalles del Inclukiosco')}
                 className="text-sky-700 font-bold text-sm inline-flex items-center gap-1.5 hover:underline cursor-pointer"
               >
                 <span>Conocer detalles del proyecto</span>
@@ -258,57 +224,57 @@ export const HomeSection: React.FC<Props> = ({ onNavigate, onOpenDonateModal }) 
             </div>
           </div>
 
-          {/* Tienda Manos que Inspiran Card */}
+          {/* Expendedoras Inclusivas Card */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
-                <Sparkles className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center">
+                <Coffee className="w-5 h-5" />
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                Subdominio Exclusivo
+              <span className="text-[11px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
+                Alianzas Corporativas
               </span>
               <h3 className="text-xl font-bold text-slate-900">
-                Tienda 'Manos que inspiran'
+                Expendedoras Inclusivas
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Productos artesanales elaborados en talleres de inclusión: bolsas ecológicas estampadas en serigrafía, cuadernos con braille, velas y merchandising con propósito solidario.
+                Máquinas de café y snacks operadas y mantenidas por trabajadores con discapacidad en empresas e instituciones para generar empleo genuino.
               </p>
             </div>
             <div className="pt-4 mt-4 border-t border-slate-100">
               <button
                 type="button"
-                onClick={() => onNavigate('tienda')}
-                className="text-emerald-700 font-bold text-sm inline-flex items-center gap-1.5 hover:underline cursor-pointer"
+                onClick={() => handleCta('programas', 'home_card_expendedoras', 'Instalar una expendedora')}
+                className="text-sky-700 font-bold text-sm inline-flex items-center gap-1.5 hover:underline cursor-pointer"
               >
-                <span>Explorar catálogo de la tienda</span>
+                <span>Instalar una expendedora</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          {/* Banco Ortopédico Card */}
+          {/* Inserción Laboral Card */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center">
-                <Heart className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                <UserCheck className="w-5 h-5" />
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
-                Banco Solidario
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                Bolsa de Empleo & Cupo 4%
               </span>
               <h3 className="text-xl font-bold text-slate-900">
-                Catálogo Solidario & Alcancía
+                Inserción Laboral Real
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Préstamo solidario de sillas de ruedas, bastones blancos y verdes, muletas y andadores. Conocé además la barra de progreso interactiva de nuestra meta mensual.
+                Convocatorias laborales inclusivas, registro de perfiles con ajustes razonables y asesoramiento a organismos y empresas en el cumplimiento de la Ley 22.431.
               </p>
             </div>
             <div className="pt-4 mt-4 border-t border-slate-100">
               <button
                 type="button"
-                onClick={() => onNavigate('catalogo')}
-                className="text-sky-700 font-bold text-sm inline-flex items-center gap-1.5 hover:underline cursor-pointer"
+                onClick={() => handleCta('laboral', 'home_card_laboral', 'Ver ofertas y postular CV')}
+                className="text-emerald-700 font-bold text-sm inline-flex items-center gap-1.5 hover:underline cursor-pointer"
               >
-                <span>Ver elementos y alcancía</span>
+                <span>Ver ofertas y postular CV</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

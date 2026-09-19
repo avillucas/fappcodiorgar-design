@@ -1,28 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { SectionId, ArtisanProduct, AccessibilitySettings } from './types';
+import { SectionId, AccessibilitySettings } from './types';
 import { AccessibilityToolbar } from './components/AccessibilityToolbar';
 import { Header } from './components/Header';
 import { HomeSection } from './components/HomeSection';
 import { InstitucionalSection } from './components/InstitucionalSection';
 import { ServiciosSection } from './components/ServiciosSection';
-import { CatalogoSolidarioSection } from './components/CatalogoSolidarioSection';
-import { TiendaSolidariaSection } from './components/TiendaSolidariaSection';
 import { InsercionLaboralSection } from './components/InsercionLaboralSection';
 import { NormativaCUDSection } from './components/NormativaCUDSection';
-import { PrensaBlogSection } from './components/PrensaBlogSection';
-import { ContactoChatbotSection } from './components/ContactoChatbotSection';
+import { PrensaSection } from './components/PrensaSection';
+import { ContactoSection } from './components/ContactoSection';
 import { Footer } from './components/Footer';
-import { DonationModal } from './components/DonationModal';
-
-interface CartItem {
-  product: ArtisanProduct;
-  quantity: number;
-}
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('inicio');
-  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
-  const [cart, setCart] = useState<CartItem[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Full Accessibility settings state
@@ -86,41 +76,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Cart operations
-  const handleAddToCart = (product: ArtisanProduct) => {
-    setCart(prev => {
-      const existing = prev.find(item => item.product.id === product.id);
-      if (existing) {
-        return prev.map(item =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prev, { product, quantity: 1 }];
-    });
-  };
-
-  const handleUpdateQuantity = (productId: string, quantity: number) => {
-    if (quantity <= 0) {
-      handleRemoveFromCart(productId);
-      return;
-    }
-    setCart(prev =>
-      prev.map(item =>
-        item.product.id === productId ? { ...item, quantity } : item
-      )
-    );
-  };
-
-  const handleRemoveFromCart = (productId: string) => {
-    setCart(prev => prev.filter(item => item.product.id !== productId));
-  };
-
-  const handleClearCart = () => {
-    setCart([]);
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans transition-colors duration-200">
       {/* Skip to main content for screen readers and keyboard users */}
@@ -144,17 +99,12 @@ export default function App() {
       <Header
         activeSection={activeSection}
         onSelectSection={handleNavigate}
-        onOpenDonateModal={() => setIsDonationModalOpen(true)}
-        cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
       />
 
       {/* Main Content Area */}
       <main id="main-content" tabIndex={-1} className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {activeSection === 'inicio' && (
-          <HomeSection
-            onNavigate={handleNavigate}
-            onOpenDonateModal={() => setIsDonationModalOpen(true)}
-          />
+          <HomeSection onNavigate={handleNavigate} />
         )}
 
         {activeSection === 'institucional' && (
@@ -163,22 +113,6 @@ export default function App() {
 
         {activeSection === 'programas' && (
           <ServiciosSection />
-        )}
-
-        {activeSection === 'catalogo' && (
-          <CatalogoSolidarioSection
-            onOpenDonateModal={() => setIsDonationModalOpen(true)}
-          />
-        )}
-
-        {activeSection === 'tienda' && (
-          <TiendaSolidariaSection
-            cart={cart}
-            onAddToCart={handleAddToCart}
-            onUpdateQuantity={handleUpdateQuantity}
-            onRemoveFromCart={handleRemoveFromCart}
-            onClearCart={handleClearCart}
-          />
         )}
 
         {activeSection === 'laboral' && (
@@ -190,25 +124,16 @@ export default function App() {
         )}
 
         {activeSection === 'prensa' && (
-          <PrensaBlogSection />
+          <PrensaSection />
         )}
 
         {activeSection === 'contacto' && (
-          <ContactoChatbotSection />
+          <ContactoSection />
         )}
       </main>
 
       {/* Institutional Footer */}
-      <Footer
-        onNavigate={handleNavigate}
-        onOpenDonateModal={() => setIsDonationModalOpen(true)}
-      />
-
-      {/* Solidary Donation Modal */}
-      <DonationModal
-        isOpen={isDonationModalOpen}
-        onClose={() => setIsDonationModalOpen(false)}
-      />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import {
   Users, 
   Award, 
   CheckCircle2, 
-  Phone, 
+  MessageCircle, 
   Clock, 
   Building, 
   Send, 
@@ -14,9 +14,11 @@ import {
   Layers, 
   Sparkles,
   BarChart3,
-  Mail
+  Mail,
+  ExternalLink
 } from 'lucide-react';
 import { INSTITUTIONAL_INFO } from '../data/fappcodiData';
+import { trackCtaClick } from '../utils/analytics';
 
 export const ServiciosSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'inclukiosco' | 'expendedoras' | 'familias'>('inclukiosco');
@@ -24,7 +26,30 @@ export const ServiciosSection: React.FC = () => {
   // Interactive form states
   const [kioscoFormSubmitted, setKioscoFormSubmitted] = useState(false);
   const [expendedoraFormSubmitted, setExpendedoraFormSubmitted] = useState(false);
+  const [expEmpresa, setExpEmpresa] = useState('');
+  const [expEmail, setExpEmail] = useState('');
+  const [lastExpWhatsappUrl, setLastExpWhatsappUrl] = useState('');
   const [familyFormSubmitted, setFamilyFormSubmitted] = useState(false);
+
+  const handleTabChange = (tab: 'inclukiosco' | 'expendedoras' | 'familias', label: string) => {
+    trackCtaClick({
+      cta_name: `tab_${tab}`,
+      cta_category: 'navigation',
+      cta_label: `Pestaña Programas: ${label}`,
+      cta_location: 'servicios_tabs'
+    });
+    setActiveTab(tab);
+  };
+
+  const handleWhatsAppConsult = (program: string) => {
+    trackCtaClick({
+      cta_name: 'servicios_whatsapp_consult',
+      cta_category: 'contact_direct',
+      cta_label: `Consultar ${program} vía WhatsApp`,
+      destination_url: INSTITUTIONAL_INFO.whatsappLink,
+      cta_location: 'servicios_section'
+    });
+  };
 
   return (
     <div className="space-y-10 pb-16">
@@ -46,7 +71,7 @@ export const ServiciosSection: React.FC = () => {
           <button
             id="tab-inclukiosco"
             type="button"
-            onClick={() => setActiveTab('inclukiosco')}
+            onClick={() => handleTabChange('inclukiosco', 'El Inclukiosco')}
             className={`px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'inclukiosco'
                 ? 'bg-amber-600 text-white shadow-sm'
@@ -60,7 +85,7 @@ export const ServiciosSection: React.FC = () => {
           <button
             id="tab-expendedoras"
             type="button"
-            onClick={() => setActiveTab('expendedoras')}
+            onClick={() => handleTabChange('expendedoras', 'Expendedoras Inclusivas')}
             className={`px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'expendedoras'
                 ? 'bg-sky-700 text-white shadow-sm'
@@ -74,7 +99,7 @@ export const ServiciosSection: React.FC = () => {
           <button
             id="tab-familias"
             type="button"
-            onClick={() => setActiveTab('familias')}
+            onClick={() => handleTabChange('familias', 'Asesoramiento a Familias')}
             className={`px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'familias'
                 ? 'bg-emerald-700 text-white shadow-sm'
@@ -106,11 +131,14 @@ export const ServiciosSection: React.FC = () => {
               </div>
 
               <a
-                href={`tel:${INSTITUTIONAL_INFO.phone.replace(/\s+/g, '')}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-xs shadow-sm transition"
+                href={INSTITUTIONAL_INFO.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => handleWhatsAppConsult('Inclukiosco')}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow-sm transition"
               >
-                <Phone className="w-4 h-4" />
-                <span>Solicitar Inclukiosco: {INSTITUTIONAL_INFO.phone}</span>
+                <MessageCircle className="w-4 h-4" />
+                <span>Consultar vía WhatsApp</span>
               </a>
             </div>
 
@@ -223,6 +251,12 @@ export const ServiciosSection: React.FC = () => {
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
+                  trackCtaClick({
+                    cta_name: 'form_submit_inclukiosco_request',
+                    cta_category: 'form_submit',
+                    cta_label: 'Solicitud Expansión Inclukiosco',
+                    cta_location: 'servicios_inclukiosco'
+                  });
                   setKioscoFormSubmitted(true);
                 }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2"
@@ -298,32 +332,97 @@ export const ServiciosSection: React.FC = () => {
               </p>
 
               {expendedoraFormSubmitted ? (
-                <div className="p-4 bg-emerald-900/80 border border-emerald-500 text-emerald-200 rounded-xl text-xs font-medium">
-                  ¡Solicitud enviada! Nuestro equipo corporativo se comunicará para coordinar la visita técnica y la propuesta para tu empresa.
+                <div className="p-4 bg-emerald-950 border border-emerald-500/60 text-emerald-200 rounded-xl space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-300">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <span>¡Mensaje corporativo preparado para WhatsApp!</span>
+                  </div>
+                  <p className="text-xs text-slate-300">
+                    Preparamos el mensaje para <strong>{expEmpresa}</strong>. Si WhatsApp no se abrió automáticamente, podés iniciarlo con el siguiente enlace:
+                  </p>
+                  {lastExpWhatsappUrl && (
+                    <div className="pt-1">
+                      <a
+                        href={lastExpWhatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>Abrir Chat de WhatsApp</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <form 
                   onSubmit={(e) => {
                     e.preventDefault();
+                    const cleanNumber = '5491155624202';
+                    const lines = [
+                      '🏢 *SOLICITUD EXPENDEDORA INCLUSIVA PARA EMPRESA - FAPPCODI*',
+                      '',
+                      `🏢 *Empresa:* ${expEmpresa.trim()}`,
+                      `📧 *Email Corporativo:* ${expEmail.trim()}`,
+                      '',
+                      'Hola FAPPCODI, nos comunicamos desde la empresa para solicitar información técnica y coordinar una propuesta para instalar una Expendedora Inclusiva.'
+                    ];
+                    const msg = lines.join('\n');
+                    const url = `https://api.whatsapp.com/send?phone=${cleanNumber}&text=${encodeURIComponent(msg)}`;
+
+                    trackCtaClick({
+                      cta_name: 'form_submit_expendedoras_empresa',
+                      cta_category: 'form_submit',
+                      cta_label: `Expendedora Empresa: ${expEmpresa.trim()}`,
+                      destination_url: url,
+                      cta_location: 'servicios_expendedoras',
+                      additional_data: {
+                        company_name: expEmpresa.trim(),
+                        company_email: expEmail.trim()
+                      }
+                    });
+
+                    setLastExpWhatsappUrl(url);
                     setExpendedoraFormSubmitted(true);
+                    if (typeof window !== 'undefined') {
+                      window.open(url, '_blank', 'noopener,noreferrer');
+                    }
                   }}
                   className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2"
                 >
                   <div>
                     <label htmlFor="exp-empresa" className="block text-[11px] font-bold text-slate-300 mb-1">Nombre de la Empresa</label>
-                    <input id="exp-empresa" required type="text" placeholder="Ej. Empresa SA" className="w-full text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white" />
+                    <input 
+                      id="exp-empresa" 
+                      required 
+                      type="text" 
+                      value={expEmpresa}
+                      onChange={e => setExpEmpresa(e.target.value)}
+                      placeholder="Ej. Empresa SA" 
+                      className="w-full text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none" 
+                    />
                   </div>
                   <div>
                     <label htmlFor="exp-email" className="block text-[11px] font-bold text-slate-300 mb-1">Email Corporativo</label>
-                    <input id="exp-email" required type="email" placeholder="rrhh@empresa.com" className="w-full text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white" />
+                    <input 
+                      id="exp-email" 
+                      required 
+                      type="email" 
+                      value={expEmail}
+                      onChange={e => setExpEmail(e.target.value)}
+                      placeholder="rrhh@empresa.com" 
+                      className="w-full text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none" 
+                    />
                   </div>
                   <div className="flex items-end">
                     <button
                       id="btn-submit-expendedora"
                       type="submit"
-                      className="w-full py-2 px-4 bg-sky-600 hover:bg-sky-500 text-white rounded-lg font-bold text-xs transition cursor-pointer"
+                      className="w-full py-2 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer shadow"
                     >
-                      Solicitar Propuesta para Empresa
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      <span>Solicitar por WhatsApp</span>
                     </button>
                   </div>
                 </form>
@@ -388,6 +487,12 @@ export const ServiciosSection: React.FC = () => {
                 <form 
                   onSubmit={(e) => {
                     e.preventDefault();
+                    trackCtaClick({
+                      cta_name: 'form_submit_asesoramiento_familias',
+                      cta_category: 'form_submit',
+                      cta_label: 'Solicitud Asesoramiento a Familias',
+                      cta_location: 'servicios_familias'
+                    });
                     setFamilyFormSubmitted(true);
                   }}
                   className="space-y-3"
@@ -407,7 +512,7 @@ export const ServiciosSection: React.FC = () => {
                         <option>Trámite de CUD</option>
                         <option>Problemas con Obra Social / Prepaga</option>
                         <option>Búsqueda de empleo / CFI</option>
-                        <option>Préstamo de silla o bastón</option>
+                        <option>Equipamiento y accesibilidad</option>
                         <option>Otro tema</option>
                       </select>
                     </div>

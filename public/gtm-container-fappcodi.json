@@ -1,0 +1,555 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-09-18 22:30:00",
+  "containerVersion": {
+    "path": "accounts/6000000000/containers/90000000/versions/0",
+    "accountId": "6000000000",
+    "containerId": "90000000",
+    "container": {
+      "path": "accounts/6000000000/containers/90000000",
+      "accountId": "6000000000",
+      "containerId": "90000000",
+      "name": "FAPPCODI - Portal Institucional",
+      "publicId": "GTM-FAPPCODI",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "1710780000000",
+      "tagManagerUrl": "https://tagmanager.google.com"
+    },
+    "tag": [
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "1",
+        "name": "Google Tag - GA4 Configuración",
+        "type": "googtag",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "tagId",
+            "value": "{{GA4 Measurement ID}}"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "2",
+        "name": "GA4 Event - cta_click",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "1",
+            "key": "eventName",
+            "value": "cta_click"
+          },
+          {
+            "type": "2",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_name" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_name}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_category" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_category}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_label" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_label}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_location" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_location}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "destination_url" },
+                  { "type": "1", "key": "value", "value": "{{dlv - destination_url}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "101"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "3",
+        "name": "GA4 Event - submit_application",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "1",
+            "key": "eventName",
+            "value": "submit_application"
+          },
+          {
+            "type": "2",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "application_type" },
+                  { "type": "1", "key": "value", "value": "insercion_laboral" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_name" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_name}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_label" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_label}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "destination_url" },
+                  { "type": "1", "key": "value", "value": "{{dlv - destination_url}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "102"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "4",
+        "name": "GA4 Event - generate_lead",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "1",
+            "key": "eventName",
+            "value": "generate_lead"
+          },
+          {
+            "type": "2",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "lead_source" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_location}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_name" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_name}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "destination_url" },
+                  { "type": "1", "key": "value", "value": "{{dlv - destination_url}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "103"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "5",
+        "name": "GA4 Event - contact",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "1",
+            "key": "eventName",
+            "value": "contact"
+          },
+          {
+            "type": "2",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_name" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_name}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_location" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_location}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "destination_url" },
+                  { "type": "1", "key": "value", "value": "{{dlv - destination_url}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "104"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "6",
+        "name": "GA4 Event - social_interaction",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "1",
+            "key": "eventName",
+            "value": "social_interaction"
+          },
+          {
+            "type": "2",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "cta_label" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_label}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "destination_url" },
+                  { "type": "1", "key": "value", "value": "{{dlv - destination_url}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "105"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "tagId": "7",
+        "name": "GA4 Event - select_content",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "measurementId",
+            "value": "{{GA4 Measurement ID}}"
+          },
+          {
+            "type": "1",
+            "key": "eventName",
+            "value": "select_content"
+          },
+          {
+            "type": "2",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "item_id" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_name}}" }
+                ]
+              },
+              {
+                "type": "3",
+                "map": [
+                  { "type": "1", "key": "name", "value": "content_type" },
+                  { "type": "1", "key": "value", "value": "{{dlv - cta_category}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "106"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "2147479553",
+        "name": "All Pages",
+        "type": "PAGEVIEW"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "101",
+        "name": "Custom Event - cta_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "1", "key": "arg0", "value": "{{_event}}" },
+              { "type": "1", "key": "arg1", "value": "cta_click" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "102",
+        "name": "Custom Event - submit_application",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "1", "key": "arg0", "value": "{{_event}}" },
+              { "type": "1", "key": "arg1", "value": "submit_application" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "103",
+        "name": "Custom Event - generate_lead",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "1", "key": "arg0", "value": "{{_event}}" },
+              { "type": "1", "key": "arg1", "value": "generate_lead" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "104",
+        "name": "Custom Event - contact",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "1", "key": "arg0", "value": "{{_event}}" },
+              { "type": "1", "key": "arg1", "value": "contact" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "105",
+        "name": "Custom Event - social_interaction",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "1", "key": "arg0", "value": "{{_event}}" },
+              { "type": "1", "key": "arg1", "value": "social_interaction" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "triggerId": "106",
+        "name": "Custom Event - select_content",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "1", "key": "arg0", "value": "{{_event}}" },
+              { "type": "1", "key": "arg1", "value": "select_content" }
+            ]
+          }
+        ]
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "1",
+        "name": "GA4 Measurement ID",
+        "type": "c",
+        "parameter": [
+          {
+            "type": "1",
+            "key": "value",
+            "value": "G-XXXXXXXXXX"
+          }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "2",
+        "name": "dlv - cta_name",
+        "type": "v",
+        "parameter": [
+          { "type": "2", "key": "dataLayerVersion", "value": "2" },
+          { "type": "1", "key": "name", "value": "cta_name" }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "3",
+        "name": "dlv - cta_category",
+        "type": "v",
+        "parameter": [
+          { "type": "2", "key": "dataLayerVersion", "value": "2" },
+          { "type": "1", "key": "name", "value": "cta_category" }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "4",
+        "name": "dlv - cta_label",
+        "type": "v",
+        "parameter": [
+          { "type": "2", "key": "dataLayerVersion", "value": "2" },
+          { "type": "1", "key": "name", "value": "cta_label" }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "5",
+        "name": "dlv - cta_location",
+        "type": "v",
+        "parameter": [
+          { "type": "2", "key": "dataLayerVersion", "value": "2" },
+          { "type": "1", "key": "name", "value": "cta_location" }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "6",
+        "name": "dlv - destination_url",
+        "type": "v",
+        "parameter": [
+          { "type": "2", "key": "dataLayerVersion", "value": "2" },
+          { "type": "1", "key": "name", "value": "destination_url" }
+        ]
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "variableId": "7",
+        "name": "dlv - timestamp",
+        "type": "v",
+        "parameter": [
+          { "type": "2", "key": "dataLayerVersion", "value": "2" },
+          { "type": "1", "key": "name", "value": "timestamp" }
+        ]
+      }
+    ],
+    "builtInVariable": [
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "type": "EVENT",
+        "name": "Event"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "type": "PAGE_URL",
+        "name": "Page URL"
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "90000000",
+        "type": "PAGE_PATH",
+        "name": "Page Path"
+      }
+    ]
+  }
+}

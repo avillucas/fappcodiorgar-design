@@ -2,8 +2,6 @@ export type SectionId =
   | 'inicio' 
   | 'institucional' 
   | 'programas' 
-  | 'catalogo' 
-  | 'tienda' 
   | 'laboral' 
   | 'normativas' 
   | 'prensa' 
@@ -17,28 +15,6 @@ export interface AccessibilitySettings {
   highlightLinks: boolean;
   readingMask: boolean;
   speechRate: number;
-}
-
-export interface SupportItem {
-  id: string;
-  name: string;
-  category: 'Sillas de Ruedas' | 'Bastones y Guías' | 'Muletas y Andadores' | 'Accesorios Posturales';
-  description: string;
-  status: 'Disponible para préstamo' | 'En reacondicionamiento' | 'En uso (lista de espera)';
-  availableCount: number;
-  condition: 'Excelente' | 'Muy bueno' | 'Reacondicionado a nuevo';
-  image: string;
-}
-
-export interface ArtisanProduct {
-  id: string;
-  title: string;
-  artisanGroup: string;
-  category: 'Textil & Bolsas' | 'Cerámica & Velas' | 'Papelería & Encuadernación' | 'Merchandising FAPPCODI';
-  price: number;
-  description: string;
-  image: string;
-  inStock: boolean;
 }
 
 export interface JobPosting {
@@ -75,4 +51,7 @@ export interface PressItem {
   category: 'Entrevista' | 'Inclukiosco' | 'Institucional' | 'Inclusión Laboral';
   highlightQuote?: string;
   linkText?: string;
+  url?: string;
+  imageUrl?: string;
+  author?: string;
 }

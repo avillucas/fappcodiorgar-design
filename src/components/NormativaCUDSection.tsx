@@ -20,11 +20,32 @@ import {
 } from 'lucide-react';
 import { NATIONAL_LAWS, PROVINCES_CUD } from '../data/fappcodiData';
 import { ProvinceCUDInfo } from '../types';
+import { trackCtaClick } from '../utils/analytics';
 
 export const NormativaCUDSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'guia-cud' | 'mapa-provincias' | 'digesto'>('guia-cud');
   const [searchLaw, setSearchLaw] = useState('');
   const [selectedProvinceId, setSelectedProvinceId] = useState<string>('buenos-aires');
+
+  const handleTabChange = (tab: 'guia-cud' | 'mapa-provincias' | 'digesto', label: string) => {
+    trackCtaClick({
+      cta_name: `tab_normativa_${tab}`,
+      cta_category: 'navigation',
+      cta_label: `Pestaña CUD/Normativa: ${label}`,
+      cta_location: 'normativa_tabs'
+    });
+    setActiveTab(tab);
+  };
+
+  const handleSelectProvince = (id: string, name: string) => {
+    trackCtaClick({
+      cta_name: 'select_province_cud',
+      cta_category: 'navigation',
+      cta_label: `Selección Provincia: ${name}`,
+      cta_location: 'normativa_mapa_provincias'
+    });
+    setSelectedProvinceId(id);
+  };
 
   const filteredLaws = NATIONAL_LAWS.filter(law => 
     law.code.toLowerCase().includes(searchLaw.toLowerCase()) ||
@@ -55,7 +76,7 @@ export const NormativaCUDSection: React.FC = () => {
           <button
             id="tab-guia-cud"
             type="button"
-            onClick={() => setActiveTab('guia-cud')}
+            onClick={() => handleTabChange('guia-cud', 'Guía Paso a Paso del CUD')}
             className={`px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'guia-cud'
                 ? 'bg-sky-700 text-white shadow-sm'
@@ -69,7 +90,7 @@ export const NormativaCUDSection: React.FC = () => {
           <button
             id="tab-mapa-provincias"
             type="button"
-            onClick={() => setActiveTab('mapa-provincias')}
+            onClick={() => handleTabChange('mapa-provincias', 'Mapa Federal de Juntas Evaluadoras')}
             className={`px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'mapa-provincias'
                 ? 'bg-emerald-700 text-white shadow-sm'
@@ -83,7 +104,7 @@ export const NormativaCUDSection: React.FC = () => {
           <button
             id="tab-digesto-leyes"
             type="button"
-            onClick={() => setActiveTab('digesto')}
+            onClick={() => handleTabChange('digesto', 'Digesto Nacional de Leyes')}
             className={`px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2 cursor-pointer ${
               activeTab === 'digesto'
                 ? 'bg-slate-900 text-white shadow-sm'
@@ -268,7 +289,7 @@ export const NormativaCUDSection: React.FC = () => {
                 <button
                   key={prov.id}
                   type="button"
-                  onClick={() => setSelectedProvinceId(prov.id)}
+                  onClick={() => handleSelectProvince(prov.id, prov.name)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
                     selectedProvinceId === prov.id
                       ? 'bg-emerald-700 text-white shadow'

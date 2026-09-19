@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" width="440" height="440">
+  <defs>
+    <!-- Master hand silhouette (normalized) -->
+    <path id="fappcodi-hand" d="M 34,96 C 33,88 29,80 25,74 C 20,67 13,63 6,61 C 2,60 0,55 2,50 C 4,45 10,45 16,49 C 21,53 25,58 27,63 C 27,52 26,30 26,19 C 26,13 30,10 34,12 C 38,14 39,19 39,26 L 39,37 C 40,28 41,15 44,9 C 47,4 53,4 55,9 C 57,14 57,25 57,35 C 58,28 61,18 64,15 C 68,12 73,14 74,19 C 75,24 75,33 74,41 C 76,35 79,28 83,27 C 87,26 91,29 91,35 C 91,43 89,57 87,66 C 83,78 77,88 66,96 Z" fill="currentColor" />
+  </defs>
+
+  <!-- Top-Left: Yellow square, Green hand (pointing left, thumb down) -->
+  <rect x="0" y="0" width="210" height="210" fill="#FFE800" rx="4" />
+  <g transform="translate(105, 105) rotate(-90) scale(1.6) translate(-50, -52)" fill="#009E49">
+    <use href="#fappcodi-hand" />
+  </g>
+
+  <!-- Top-Right: Green square, Purple hand (pointing up, thumb left) -->
+  <rect x="230" y="0" width="210" height="210" fill="#009E49" rx="4" />
+  <g transform="translate(335, 105) scale(1.6) translate(-50, -52)" fill="#281566">
+    <use href="#fappcodi-hand" />
+  </g>
+
+  <!-- Bottom-Left: Red square, Yellow hand (pointing down, thumb right) -->
+  <rect x="0" y="230" width="210" height="210" fill="#E52421" rx="4" />
+  <g transform="translate(105, 335) rotate(180) scale(1.6) translate(-50, -52)" fill="#FFE800">
+    <use href="#fappcodi-hand" />
+  </g>
+
+  <!-- Bottom-Right: Purple square, Red hand (pointing left, thumb up) -->
+  <rect x="230" y="230" width="210" height="210" fill="#281566" rx="4" />
+  <g transform="translate(335, 335) scale(-1.6, 1.6) rotate(90) translate(-50, -52)" fill="#E52421">
+    <use href="#fappcodi-hand" />
+  </g>
+</svg>
