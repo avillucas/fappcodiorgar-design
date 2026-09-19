@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+}
+
+/* Accessibility Focus Visible outline */
+*:focus-visible {
+  outline: 3px solid #0284c7 !important;
+  outline-offset: 3px !important;
+}
+
+/* Skip link for keyboard accessibility */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 1rem;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  z-index: 99999;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* High Contrast Dark Mode (WCAG AAA) */
+body.high-contrast-dark {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+}
+
+body.high-contrast-dark * {
+  background-color: transparent;
+  border-color: #ffff00 !important;
+  color: #ffff00 !important;
+  box-shadow: none !important;
+}
+
+body.high-contrast-dark a,
+body.high-contrast-dark button {
+  color: #00ffff !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast-dark a:hover,
+body.high-contrast-dark button:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* High Contrast Light Mode */
+body.high-contrast-light {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.high-contrast-light * {
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
+
+body.high-contrast-light a,
+body.high-contrast-light button {
+  color: #0000ee !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+}
+
+/* Monochrome Mode */
+body.monochrome {
+  filter: grayscale(100%) contrast(120%);
+}
+
+/* Dyslexia friendly font & spacing */
+body.dyslexia-mode {
+  font-family: 'Atkinson Hyperlegible', Arial, sans-serif !important;
+  letter-spacing: 0.08em !important;
+  word-spacing: 0.16em !important;
+  line-height: 1.85 !important;
+}
+
+body.dyslexia-mode p,
+body.dyslexia-mode li,
+body.dyslexia-mode span {
+  letter-spacing: 0.08em !important;
+  line-height: 1.85 !important;
+}
+
+/* Enhanced Text Spacing */
+body.enhanced-spacing {
+  letter-spacing: 0.1em !important;
+  word-spacing: 0.2em !important;
+  line-height: 2 !important;
+}
+
+/* Highlight all links */
+body.highlight-links a {
+  background-color: #fef08a !important;
+  color: #0f172a !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+  padding: 0 4px !important;
+  border-radius: 2px !important;
+}
+
+/* Reading Mask guide */
+.reading-mask-overlay {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(254, 240, 138, 0.25);
+  border-top: 2px dashed #ca8a04;
+  border-bottom: 2px dashed #ca8a04;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translateY(-50%);
+}

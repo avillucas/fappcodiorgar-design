@@ -1,0 +1,6 @@
+{
+  "name": "FAPPCODI - Portal Institucional y Accesible",
+  "description": "Portal institucional y accesible de la Fundación Argentina para las Personas con Discapacidad (FAPPCODI), fundada por Silvio Catania. Inclusión laboral, Inclukiosco, Expendedoras, guía CUD y banco ortopédico.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
