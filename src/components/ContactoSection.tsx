@@ -33,8 +33,8 @@ const INSTITUTIONAL_FAQS: FAQ[] = [
     answer: "El CUD es un documento público y gratuito válido en todo el país. Para obtenerlo: 1) Reuní los certificados e informes médicos actualizados de tus profesionales tratantes; 2) Solicitá el turno en la Junta Evaluadora correspondiente a tu domicilio según el DNI; 3) Concurrí a la evaluación interdisciplinaria. Podés consultar las direcciones de las sedes de todo el país en la sección 'Normativa & CUD'."
   },
   {
-    question: "¿Qué es el Inclukiosco y cómo funciona?",
-    answer: "El Inclukiosco es un proyecto modelo de inserción laboral de FAPPCODI ubicado en el predio de la Municipalidad de Lanús (Hipólito Yrigoyen 3863). Es atendido por jóvenes de escuelas especiales y centros de formación integral (CFI) que realizan pasantías profesionalizantes de 120 horas supervisadas por un Maestro de Inclusión Laboral (MIL) con certificación oficial del COPRET."
+    question: "¿Qué es el Inclukiosco y dónde está ubicado?",
+    answer: "El Inclukiosco es un proyecto modelo de inserción laboral de FAPPCODI ubicado en Av. Hipólito Yrigoyen 3863 (Lanús), dentro del predio de la Municipalidad de Lanús, justo detrás del cajero automático. Es atendido por jóvenes de escuelas especiales y centros de formación integral (CFI) que realizan pasantías profesionalizantes de 120 horas supervisadas por un Maestro de Inclusión Laboral (MIL) con certificación oficial del COPRET."
   },
   {
     question: "¿Cómo puede mi empresa instalar una Expendedora Inclusiva?",
@@ -45,8 +45,8 @@ const INSTITUTIONAL_FAQS: FAQ[] = [
     answer: "En la sección de Inserción Laboral podés postularte a las búsquedas vigentes y cargar tu currículum especificando los apoyos o ajustes razonables que requerís en tu puesto de trabajo. También asesoramos a empresas y organismos públicos en los alcances de la Ley 22.431 y sus beneficios fiscales."
   },
   {
-    question: "¿Dónde queda la sede física de FAPPCODI?",
-    answer: "Nuestra sede institucional funciona en el predio de la Municipalidad de Lanús, en Av. Hipólito Yrigoyen 3863, Lanús, Provincia de Buenos Aires."
+    question: "¿Cómo contactar o coordinar con la Fundación FAPPCODI?",
+    answer: "FAPPCODI atiende y coordina actividades en todo el territorio argentino a través de sus canales digitales oficiales (WhatsApp +54 9 11 5562-4202 y correo electrónico contacto@fappcodi.org.ar). Si deseás conocer el Inclukiosco de forma presencial, podés acercarte al predio de la Municipalidad de Lanús en Av. Hipólito Yrigoyen 3863, detrás del cajero."
   }
 ];
 
@@ -271,17 +271,22 @@ export const ContactoSection: React.FC = () => {
           <div className="bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 space-y-4 shadow-sm">
             <div className="flex items-center gap-2 text-sky-400">
               <Building2 className="w-5 h-5" />
-              <h3 className="font-bold text-base text-white">Sede Institucional</h3>
+              <h3 className="font-bold text-base text-white">Institución y Territorio</h3>
             </div>
 
             <div className="space-y-2 text-xs text-slate-300">
-              <p className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                <span>{INSTITUTIONAL_INFO.address}</span>
+              <p className="leading-relaxed">
+                Fundación de alcance y habilitación federal para operar programas y convenios en toda la República Argentina.
               </p>
-              <p className="text-[11px] text-slate-400 pt-1">
-                Predio de la Municipalidad de Lanús, Provincia de Buenos Aires.
-              </p>
+              <div className="p-3 bg-slate-800/80 rounded-xl border border-slate-700/80 space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">
+                  Ubicación del Inclukiosco:
+                </span>
+                <p className="flex items-start gap-1.5 text-slate-200">
+                  <MapPin className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <span>Av. Hipólito Yrigoyen 3863, Lanús (dentro del predio de la Municipalidad de Lanús, detrás del cajero automático).</span>
+                </p>
+              </div>
             </div>
 
             <div className="pt-3 border-t border-slate-800 text-[11px] text-slate-400 space-y-1">

@@ -170,11 +170,11 @@ export const InstitucionalSection: React.FC = () => {
           </div>
 
           <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700 flex items-start gap-3">
-            <MapPin className="w-6 h-6 text-sky-400 flex-shrink-0 mt-1" />
+            <MapPin className="w-6 h-6 text-amber-400 flex-shrink-0 mt-1" />
             <div>
-              <h3 className="font-bold text-white text-base">Sede Central y Operativa</h3>
+              <h3 className="font-bold text-white text-base">Proyecto Modelo: El Inclukiosco</h3>
               <p className="text-slate-300 text-xs sm:text-sm mt-1">
-                Predio de la Municipalidad de Lanús, Av. Hipólito Yrigoyen 3863, Lanús, Provincia de Buenos Aires.
+                Ubicado dentro del predio de la Municipalidad de Lanús (Av. Hipólito Yrigoyen 3863, detrás del cajero automático), primer kiosco inclusivo modelo atendido por personas con discapacidad.
               </p>
             </div>
           </div>

@@ -178,17 +178,22 @@ export const Footer: React.FC<Props> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Sede y Contacto */}
+        {/* Canales y Ubicación Inclukiosco */}
         <div className="space-y-3">
           <h2 className="font-bold text-white text-sm uppercase tracking-wider">
-            Sede Central y Canales
+            Canales y Ubicación
           </h2>
           <div className="space-y-2 text-xs text-slate-400">
-            <p className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-sky-400 flex-shrink-0 mt-0.5" />
-              <span>{INSTITUTIONAL_INFO.address}</span>
-            </p>
-            <p className="flex items-center gap-2">
+            <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 space-y-1">
+              <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">
+                El Inclukiosco (Lanús)
+              </span>
+              <p className="flex items-start gap-1.5 text-slate-300 text-[11px]">
+                <MapPin className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
+                <span>Dentro de la Municipalidad de Lanús (Av. Hipólito Yrigoyen 3863, detrás del cajero automático).</span>
+              </p>
+            </div>
+            <p className="flex items-center gap-2 pt-1">
               <MessageCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
               <a 
                 href={INSTITUTIONAL_INFO.whatsappLink} 

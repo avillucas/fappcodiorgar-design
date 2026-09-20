@@ -34,10 +34,10 @@ export const INSTITUTIONAL_INFO = {
   phone: "+54 11 5562-4202",
   whatsapp: "+54 9 11 5562-4202",
   whatsappLink: "https://wa.me/5491155624202",
-  address: "Hipólito Yrigoyen 3863, Lanús, Provincia de Buenos Aires, Argentina",
+  address: "República Argentina (Ámbito de actuación federal autorizado por Personería Jurídica Nº 21602)",
   email: "contacto@fappcodi.org.ar",
   emailLink: "mailto:contacto@fappcodi.org.ar",
-  cuit: "30-70754821-4",
+  cuit: "30-70717637-3",
   social: {
     instagram: "https://www.instagram.com/fappcodiscapacidad/",
     linkedin: "https://www.linkedin.com/in/asociaci%C3%B3n-argentina-para-personas-con-discapacidad-10aa10304/",

@@ -11,9 +11,69 @@ import { PrensaSection } from './components/PrensaSection';
 import { ContactoSection } from './components/ContactoSection';
 import { Footer } from './components/Footer';
 
+const VALID_SECTIONS: Record<string, SectionId> = {
+  inicio: 'inicio',
+  home: 'inicio',
+  institucional: 'institucional',
+  quienes_somos: 'institucional',
+  fundacion: 'institucional',
+  programas: 'programas',
+  servicios: 'programas',
+  inclukiosco: 'programas',
+  kiosco: 'programas',
+  laboral: 'laboral',
+  empleo: 'laboral',
+  normativas: 'normativas',
+  cud: 'normativas',
+  prensa: 'prensa',
+  noticias: 'prensa',
+  contacto: 'contacto'
+};
+
+const getSectionFromUrl = (): SectionId => {
+  if (typeof window === 'undefined') return 'inicio';
+
+  // 1. Check URL Hash: e.g. #contacto, #/contacto, #inclukiosco
+  const hash = window.location.hash.replace(/^#\/?/, '').trim().toLowerCase();
+  if (hash && VALID_SECTIONS[hash]) {
+    return VALID_SECTIONS[hash];
+  }
+
+  // 2. Check URL search query param: e.g. ?seccion=contacto, ?section=laboral
+  const searchParams = new URLSearchParams(window.location.search);
+  const param = (searchParams.get('seccion') || searchParams.get('section') || searchParams.get('s') || '').trim().toLowerCase();
+  if (param && VALID_SECTIONS[param]) {
+    return VALID_SECTIONS[param];
+  }
+
+  // 3. Check pathname: e.g. /contacto or /prensa (supports SPA rewrite in Ferozo/Apache)
+  const path = window.location.pathname.replace(/^\/+|\/+$/g, '').trim().toLowerCase();
+  if (path && VALID_SECTIONS[path]) {
+    return VALID_SECTIONS[path];
+  }
+
+  return 'inicio';
+};
+
 export default function App() {
-  const [activeSection, setActiveSection] = useState<SectionId>('inicio');
+  const [activeSection, setActiveSection] = useState<SectionId>(getSectionFromUrl);
   const [isSpeaking, setIsSpeaking] = useState(false);
+
+  // Sync state when browser back/forward or hash changes
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const targetSection = getSectionFromUrl();
+      setActiveSection(targetSection);
+    };
+
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, []);
 
   // Full Accessibility settings state
   const [accessibilitySettings, setAccessibilitySettings] = useState<AccessibilitySettings>({
@@ -69,10 +129,19 @@ export default function App() {
     }
   }, []);
 
-  // Stop speech synthesis if user navigates
+  // Stop speech synthesis if user navigates and update URL hash
   const handleNavigate = (section: SectionId) => {
     handleStopSpeaking();
     setActiveSection(section);
+    
+    // Update hash in URL so users can copy/share or reload direct links without reloading page
+    if (typeof window !== 'undefined') {
+      const targetHash = `#${section}`;
+      if (window.location.hash !== targetHash) {
+        window.history.pushState(null, '', targetHash);
+      }
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

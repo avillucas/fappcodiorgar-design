@@ -209,7 +209,7 @@ export const HomeSection: React.FC<Props> = ({ onNavigate }) => {
                 El Inclukiosco de Lanús
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Kiosco atendido por personas con discapacidad en Hipólito Yrigoyen 3863, construido de forma sustentable con ladrillos de polipropileno reciclado y pasantías certificadas por COPRET.
+                Kiosco atendido por personas con discapacidad dentro de la Municipalidad de Lanús (Hipólito Yrigoyen 3863, detrás del cajero), construido de forma sustentable con ladrillos de polipropileno reciclado y pasantías certificadas por COPRET.
               </p>
             </div>
             <div className="pt-4 mt-4 border-t border-slate-100">

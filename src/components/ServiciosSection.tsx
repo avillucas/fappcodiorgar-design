@@ -120,7 +120,7 @@ export const ServiciosSection: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-5">
               <div>
                 <span className="text-amber-800 font-bold text-xs uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
-                  Hipólito Yrigoyen 3863, Lanús
+                  Hipólito Yrigoyen 3863, Lanús · Dentro de la Municipalidad, detrás del cajero
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
                   Un kiosco atendido por personas con discapacidad
@@ -149,7 +149,7 @@ export const ServiciosSection: React.FC = () => {
                 </p>
 
                 <p>
-                  El local, ubicado en Hipólito Yrigoyen al 3863, fue oficialmente inaugurado con la aprobación del Concejo Deliberante. Silvio Catania viene gestando esta idea debido a una preocupación que él padece en carne propia al ser una persona ciega: la dificultosa inserción laboral de las personas con discapacidad.
+                  El local está ubicado en Av. Hipólito Yrigoyen 3863, dentro del predio de la Municipalidad de Lanús, justo detrás del cajero automático. Fue oficialmente inaugurado con la aprobación del Concejo Deliberante. Silvio Catania viene gestando esta idea debido a una preocupación que él padece en carne propia al ser una persona ciega: la dificultosa inserción laboral de las personas con discapacidad.
                 </p>
 
                 <blockquote className="p-4 bg-amber-50/80 rounded-xl border-l-4 border-amber-500 text-amber-950 font-serif italic">
